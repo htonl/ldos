@@ -98,8 +98,7 @@ int main(int argc, char* argv[])
         return -1;
     }
     //Arg parsing
-    for (int i = 0; i < argc; i++)
-    {
+    for (int i = 0; i < argc; i++) {
         if (!strcmp(argv[i],"-p")) {
             port = atoi(argv[i + 1]);
         }
