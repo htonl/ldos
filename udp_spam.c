@@ -59,7 +59,6 @@ struct sockaddr_in configure_sock(int port, char *hostname)
     servaddr.sin_family = AF_INET;
     servaddr.sin_addr.s_addr = inet_addr(hostname);
     servaddr.sin_port = htons(port);
-
     return servaddr;
 }
 
@@ -73,6 +72,7 @@ int udp_send(const char *msg, int fd, struct sockaddr_in servaddr)
         perror("cannot send message");
         return -1;
     }
+    return 0;
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
