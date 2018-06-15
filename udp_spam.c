@@ -19,7 +19,7 @@
  * =====================================================================================
  * This software comes with no warrenties. It is free to use and copy. Any use
  * of this software in an illegal way, is not the responsibility of the
- * original author. Do not use this for anything illegal.
+ * original author. 
  */
 
 #include <stdio.h>
@@ -75,6 +75,24 @@ int udp_send(const char *msg, int fd, struct sockaddr_in servaddr)
     return 0;
 }
 
+
+int check_args(char* hostname, char* message, int port)
+{
+    if (!*hostname) {
+        printf ("usage: -p port -h hostname -m message\n");
+        return -1;
+    }
+    if (!*message) {
+        printf ("usage: -p port -h hostname -m message\n");
+        return -1;
+    }
+    if (!port) {
+        printf("hostname: %s message: %s\n",hostname,message);
+        printf ("usage: -p port -h hostname -m message\n");
+        return -1;
+    }
+    return 0;
+}
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Parse Args and start the loop
  * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -84,17 +102,16 @@ int main(int argc, char* argv[])
     int port = 0, n = 1, fd;
     struct sockaddr_in servaddr;
     char hostname[1024];
-    char  message[1024];
+    char  message[2048];
     short h;
     short m;
 
-    //initialize the strings
-    for (int i = 0; i <= 1024; i++) {
-        hostname[i] = 0;
-        message[i] = 0;
-    }
+    //initialize the buffers
+    bzero(hostname, sizeof(hostname));
+    bzero(message, sizeof(message));
+
     if (argc != 7) {
-        printf ("usage: -p port -h hostname -m message0\n");
+        printf ("usage: -p port -h hostname -m message\n");
         return -1;
     }
     //Arg parsing
@@ -103,27 +120,13 @@ int main(int argc, char* argv[])
             port = atoi(argv[i + 1]);
         }
         else if (!strcmp(argv[i],"-h")) {
-            for (int c = 0; c <= strlen(argv[i+1]); c++) {
-                    hostname[c] = argv[i + 1][c];
-            }
+            strncpy(hostname, argv[i+1], sizeof(hostname));
         }
         else if (!strcmp(argv[i], "-m")) {
-            for (int c = 0; c <= strlen(argv[i+1]); c++) {
-                    message[c] = argv[i + 1][c];
-            }
+            strncpy(message, argv[i+1], sizeof(message));
         }
     }
-    if (!*hostname) {
-        printf ("usage: -p port -h hostname -m message1\n");
-        return -1;
-    }
-    if (!*message) {
-        printf ("usage: -p port -h hostname -m message2\n");
-        return -1;
-    }
-    if (!port) {
-        printf("hostname: %s message: %s\n",hostname,message);
-        printf ("usage: -p port -h hostname -m message3 port: %d\n",port);
+    if (check_args(hostname, message)) {
         return -1;
     }
     printf("Starting...\n");
