@@ -25,9 +25,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <errno.h>
-#include "udp_spam.c"
-#include "syn_flood.c"
+#include "udp_spam.h"
+#include "syn_flood.h"
+
 
 int main(int argc, char* argv[])
 {
