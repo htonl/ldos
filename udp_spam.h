@@ -15,6 +15,9 @@
  *
  * =====================================================================================
  */
+#include <sys/socket.h>
+#include <netinet/in.h>
 
 int udp_send(const char *msg, int fd, struct sockaddr_in servaddr);
+void udp_spam(char* hostname, int port, char* message);
 

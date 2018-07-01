@@ -23,6 +23,6 @@
 int get_sock_fd();
 
 struct sockaddr_in configure_sock(int port, char *hostname);
-int check_args(char* hostname, char* message, int port);
+int check_args(char* hostname, char* message, int port, char* source_ip, char* attack_type);
 
 #endif //SOCK_CONFIG_H_

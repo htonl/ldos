@@ -20,6 +20,7 @@
  * header for the checksum
  * * * * * * * * * * * * * * * * * * * * * * * * * * *
 */
+#include <netinet/tcp.h>
 
 struct csum_hdr
 {
@@ -35,5 +36,5 @@ struct csum_hdr
 unsigned short csum(unsigned short *ptr,int nbytes);
 struct iphdr* configure_packet(char* source_ip, char* datagram, struct sockaddr_in sin);
 int tcp_send(char *datagram, int sfd, struct sockaddr_in servaddr, struct iphdr* iph);
-int check_args(char* hostname, int port, char* source_ip);//might move to shared h
+void syn_flood(char* hostname, int port, char* sourcec_ip);
 

@@ -48,7 +48,7 @@ struct sockaddr_in configure_sock(int port, char *hostname)
     return servaddr;
 }
 
-int check_args(char* hostname, char* message, int port, char* source_ip)
+int check_args(char* hostname, char* message, int port, char* source_ip, char* attack_type)
 {
     if (!*hostname) {
         printf ("usage: -p port -h hostname -m message\n");

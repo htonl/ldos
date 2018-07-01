@@ -29,12 +29,14 @@
 #include <errno.h>
 #include "udp_spam.h"
 #include "syn_flood.h"
+#include "sock_config.h"
 
 
 int main(int argc, char* argv[])
 {
     // parse args
     char hostname[1024];
+    char message[1024];
     char source_ip[32];
     int port = 0;
     char attack_type[32];
@@ -68,7 +70,7 @@ int main(int argc, char* argv[])
             strncpy(message, argv[i + 1], sizeof(message));
         }
     }
-    if (check_args(hostname, port, source_ip)) { 
+    if (check_args(hostname, message, port, source_ip, attack_type)) { 
         return -1;
     }
     printf("Starting...\n");

