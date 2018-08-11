@@ -19,6 +19,11 @@
 #define SOCK_CONFIG_H_
 
 #include <sys/socket.h>
+#include <netinet/in.h>
+#include <stdio.h>
+#include <strings.h>
+#include <error.h>
+#include <arpa/inet.h>
 
 int get_sock_fd();
 
