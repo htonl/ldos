@@ -54,7 +54,7 @@ int check_args(char* hostname, char* message, int port, char* source_ip, char* a
         printf ("usage: -p port -h hostname -m message\n");
         return -1;
     }
-    if (!*message) {
+    if (!*message && !strncmp(attack_type, "udp_spam", 8)) {
         printf ("usage: -p port -h hostname -m message\n");
         return -1;
     }
@@ -62,7 +62,7 @@ int check_args(char* hostname, char* message, int port, char* source_ip, char* a
         printf ("usage: -p port -h hostname -m message\n");
         return -1;
     }
-    if (!*source_ip) {
+    if (!*source_ip && !strncmp(attack_type, "syn_flood", 9)) {
         printf ("usage: -p port -h hostname -s source_ip\n");
         return -1;
     }
