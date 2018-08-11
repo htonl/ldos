@@ -49,7 +49,10 @@ int udp_send(const char *msg, int fd, struct sockaddr_in servaddr)
 
 void udp_spam(char* hostname, int port, char* message)
 {
-	//create the UDP socket
+    int fd, n;
+    struct sockaddr_in servaddr;
+
+    //create the UDP socket
     fd = get_sock_fd();
     //configure the socket
     servaddr = configure_sock(port, hostname);
@@ -62,6 +65,5 @@ void udp_spam(char* hostname, int port, char* message)
         }
     }
     close(fd);
-    return 0;
 } 
 

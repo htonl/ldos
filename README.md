@@ -11,13 +11,10 @@ https://www.incapsula.com/ddos/attack-glossary/ip-fragmentation-attack-teardrop
 
 
 TODO:
- * main, in ldos, probably does more than it should
- * declare variables in the syn_flood and udp_spam funcs
- * Organize includes
  * Fix check_args -- the algorithm is currently wrong
- * Makefile
- * build the damn thing
+ 
+ * The thing builds, and we get an exectuable
 
-We are almost there, another hour or two of work for this.
+ * Need to test
 
 

