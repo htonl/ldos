@@ -21,9 +21,24 @@
  * Opens a socket for TCP
  * * * * * * * * * * * * * * * * * * * * * * * * * * *
 */
-int get_sock_fd()
+int get_tcp_sock_fd()
 {
     int fd = socket(AF_INET, SOCK_RAW, IPPROTO_TCP);
+
+    if(fd < 0) {
+        perror("cannot open socket");
+        return -1;
+    }
+    return fd;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Opens a socket for UDP
+ * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*/
+int get_udp_sock_fd()
+{
+    int fd = socket(AF_INET, SOCK_DGRAM,0);
 
     if(fd < 0) {
         perror("cannot open socket");

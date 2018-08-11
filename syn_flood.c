@@ -143,7 +143,7 @@ void syn_flood(char* hostname, int port, char* source_ip)
     char datagram[4096];
     struct sockaddr_in servaddr;
     
-    sfd = get_sock_fd();
+    sfd = get_tcp_sock_fd();
     //configure the socket
     servaddr = configure_sock(port, hostname);
     //create the ip header

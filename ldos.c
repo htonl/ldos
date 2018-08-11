@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
         return -1;
     }
     printf("Starting...\n");
-    printf("attack: %s, port: %d, host: %s, source_ip: %s\n",attack_type,port,hostname,source_ip);
+    printf("attack: %s, port: %d, host: %s, source_ip: %s, message: %s\n",attack_type,port,hostname,source_ip,message);
     
     // call function (either syn or udp)
     if ( !strncmp(attack_type, "syn_flood", 9)) {

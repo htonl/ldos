@@ -51,14 +51,16 @@ void udp_spam(char* hostname, int port, char* message)
 {
     int fd, n;
     struct sockaddr_in servaddr;
+    const char *m;
 
+    m = message;
     //create the UDP socket
-    fd = get_sock_fd();
+    fd = get_udp_sock_fd();
     //configure the socket
     servaddr = configure_sock(port, hostname);
     //start spamming
     while(1) {
-        udp_send(message, fd, servaddr);
+        udp_send(m, fd, servaddr);
         if (n++ == 1000000) {
             printf("1000000 more packets\n");
             n=0;

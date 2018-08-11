@@ -25,7 +25,8 @@
 #include <error.h>
 #include <arpa/inet.h>
 
-int get_sock_fd();
+int get_tcp_sock_fd();
+int get_udp_sock_fd();
 
 struct sockaddr_in configure_sock(int port, char *hostname);
 int check_args(char* hostname, char* message, int port, char* source_ip, char* attack_type);
