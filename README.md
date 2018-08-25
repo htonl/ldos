@@ -11,10 +11,8 @@ https://www.incapsula.com/ddos/attack-glossary/ip-fragmentation-attack-teardrop
 
 
 TODO:
- * Fix check_args -- the algorithm is currently wrong
+ * Add a bunch of error handling
  
- * The thing builds, and we get an exectuable
-
- * Need to test
+ * More testing
 
 
