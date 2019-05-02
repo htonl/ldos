@@ -1,5 +1,5 @@
 This software was designed for test purposes. It is the responsibility of this
-software's operator to use this in a responsible fashion. The creators recommend
+software's operator to use this in a responsible fashion. The creator recommends
 that the operator not break the law.
 
 My goal with this code is to create a cli-tool with a suite of different networking
