@@ -14,7 +14,7 @@
  *       Revision:  1.0
  *       Compiler:  gcc
  *
- *         Author:  Luke Cesarz (lc), htonl (git)
+ *        Author:  Luke Cesarz (lc), htonl (git)
  *        Address:  Minneapolis MN
  *
  * =====================================================================================
